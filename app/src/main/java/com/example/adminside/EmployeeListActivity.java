@@ -3,7 +3,6 @@ package com.example.adminside;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -35,14 +34,14 @@ public class EmployeeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employeelist);
 
-        Button buttonBack = findViewById(R.id.buttonBack); // Initialize the back button
+        Button buttonBack = findViewById(R.id.buttonBack);
         recyclerView = findViewById(R.id.recyclerViewEmployees);
         employeeList = new ArrayList<>();
 
         employeeAdapter = new EmployeeAdapter(employeeList, new EmployeeAdapter.OnEmployeeClickListener() {
             @Override
             public void onEmployeeClick(Employee employee) {
-                // Handle the edit action
+
                 Intent intent = new Intent(EmployeeListActivity.this, EditEmployeeActivity.class);
                 intent.putExtra("EMPLOYEE_ID", employee.getId());
                 intent.putExtra("EMPLOYEE_FORNAME", employee.getForename());
@@ -52,7 +51,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(Employee employee) {
-                // Handle the delete action
+
                 deleteEmployee(employee.getId());
             }
         });
@@ -62,8 +61,8 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         fetchEmployeeIds();
 
-        // Set up the button click listener
-        buttonBack.setOnClickListener(v -> finish()); // This will close the current activity and return to the previous one
+
+        buttonBack.setOnClickListener(v -> finish());
     }
 
     private void fetchEmployeeIds() {
@@ -103,7 +102,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     }
 
     private void deleteEmployee(int employeeId) {
-        String deleteUrl = URL + "/" + employeeId; // Assuming your API supports DELETE at this endpoint
+        String deleteUrl = URL + "/" + employeeId;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.DELETE,
@@ -111,7 +110,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                 null,
                 response -> {
                     Toast.makeText(EmployeeListActivity.this, "Employee deleted successfully!", Toast.LENGTH_SHORT).show();
-                    fetchEmployeeIds(); // Refresh the list after deletion
+                    fetchEmployeeIds();
                 },
                 error -> {
                     Log.e("API Error", error.toString());

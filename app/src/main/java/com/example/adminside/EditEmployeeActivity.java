@@ -32,29 +32,24 @@ public class EditEmployeeActivity extends AppCompatActivity {
         Button buttonSave = findViewById(R.id.buttonSave);
         Button backButton1 = findViewById(R.id.buttonBack1);
 
-        // Retrieve employee information from intent
-        int id = getIntent().getIntExtra("EMPLOYEE_ID", -1); // Use getIntExtra for ID
+        int id = getIntent().getIntExtra("EMPLOYEE_ID", -1);
         String forename = getIntent().getStringExtra("EMPLOYEE_FORNAME");
         String surname = getIntent().getStringExtra("EMPLOYEE_SURNAME");
 
-        // Check if the retrieved values are valid
         if (id == -1 || forename == null || surname == null) {
             Toast.makeText(this, "Employee data is missing", Toast.LENGTH_SHORT).show();
-            finish(); // Close the activity if data is not present
+            finish();
             return;
         }
 
-        // Set the retrieved values to the EditTexts
         editTextId.setText(String.valueOf(id));
         editTextForename.setText(forename);
         editTextSurname.setText(surname);
 
-        // Save button listener
         buttonSave.setOnClickListener(v -> {
             saveEmployee(id);
         });
 
-        // Back button listener
         backButton1.setOnClickListener(v -> finish());
     }
 

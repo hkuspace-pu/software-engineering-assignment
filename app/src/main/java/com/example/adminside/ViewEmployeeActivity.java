@@ -38,7 +38,7 @@ public class ViewEmployeeActivity extends AppCompatActivity {
         employeeAdapter = new EmployeeAdapter(employeeList, new EmployeeAdapter.OnEmployeeClickListener() {
             @Override
             public void onEmployeeClick(Employee employee) {
-                // Navigate to EditEmployeeActivity
+
                 Intent intent = new Intent(ViewEmployeeActivity.this, EditEmployeeActivity.class);
                 intent.putExtra("EMPLOYEE_ID", employee.getId());
                 intent.putExtra("EMPLOYEE_FORNAME", employee.getForename());
@@ -48,7 +48,6 @@ public class ViewEmployeeActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(Employee employee) {
-                // Call delete method
                 deleteEmployee(employee.getId());
             }
         });

@@ -2,7 +2,6 @@ package com.example.adminside;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 public class DeleteEmployeeActivity extends AppCompatActivity {
     private TextView textViewId, textViewForename, textViewSurname;
-    private static final String URL = "https://web.socem.plymouth.ac.uk/COMP2000/api/employees"; // Define your base URL
+    private static final String URL = "https://web.socem.plymouth.ac.uk/COMP2000/api/employees";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class DeleteEmployeeActivity extends AppCompatActivity {
         String forename = getIntent().getStringExtra("EMPLOYEE_FORNAME");
         String surname = getIntent().getStringExtra("EMPLOYEE_SURNAME");
 
-        // Check if the received data is valid
         if (id == null || forename == null || surname == null) {
             Toast.makeText(this, "Employee data is missing", Toast.LENGTH_SHORT).show();
             finish();
@@ -44,7 +42,7 @@ public class DeleteEmployeeActivity extends AppCompatActivity {
 
         buttonDelete.setOnClickListener(v -> {
             try {
-                int employeeId = Integer.parseInt(id); // Convert String ID to int
+                int employeeId = Integer.parseInt(id);
                 deleteEmployee(employeeId);
             } catch (NumberFormatException e) {
                 Toast.makeText(DeleteEmployeeActivity.this, "Invalid Employee ID", Toast.LENGTH_SHORT).show();
@@ -55,7 +53,7 @@ public class DeleteEmployeeActivity extends AppCompatActivity {
     }
 
     private void deleteEmployee(int employeeId) {
-        String deleteUrl = URL + "/" + employeeId; // Construct the DELETE URL
+        String deleteUrl = URL + "/" + employeeId;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.DELETE,
@@ -63,7 +61,7 @@ public class DeleteEmployeeActivity extends AppCompatActivity {
                 null,
                 response -> {
                     Toast.makeText(DeleteEmployeeActivity.this, "Employee deleted successfully!", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the activity after deletion
+                    finish();
                 },
                 error -> {
                     Log.e("API Error", "Error: " + error.toString());
@@ -71,7 +69,6 @@ public class DeleteEmployeeActivity extends AppCompatActivity {
                 }
         );
 
-        // Add the request to the RequestQueue
         VolleySingleton.getInstance(this).getRequestQueue().add(jsonObjectRequest);
     }
 }

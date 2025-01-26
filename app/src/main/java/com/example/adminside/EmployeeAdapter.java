@@ -58,13 +58,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
             itemView.setOnClickListener(v -> listener.onEmployeeClick(employee));
 
-            // Set up delete button
             buttonDelete.setOnClickListener(v -> listener.onDeleteClick(employee));
         }
     }
 
     public interface OnEmployeeClickListener {
-        void onEmployeeClick(Employee employee); // For editing
-        void onDeleteClick(Employee employee); // For deleting
+        void onEmployeeClick(Employee employee);
+        void onDeleteClick(Employee employee);
     }
 }

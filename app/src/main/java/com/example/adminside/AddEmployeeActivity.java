@@ -1,8 +1,5 @@
 package com.example.adminside;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
-
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +29,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         forenameEditText = findViewById(R.id.editTextForename);
         surnameEditText = findViewById(R.id.editTextSurname);
         Button addButton = findViewById(R.id.buttonAddEmployee);
-        Button backButton = findViewById(R.id.buttonBack); // Initialize the back button
+        Button backButton = findViewById(R.id.buttonBack);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,11 +38,10 @@ public class AddEmployeeActivity extends AppCompatActivity {
             }
         });
 
-        // Set onClickListener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Close the current activity and return to the previous one
+                finish();
             }
         });
     }
@@ -60,7 +56,6 @@ public class AddEmployeeActivity extends AppCompatActivity {
             return;
         }
 
-        // Validate ID input
         int employeeId;
         try {
             employeeId = Integer.parseInt(id);
@@ -95,7 +90,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("API Response", response.toString());
                         Toast.makeText(AddEmployeeActivity.this, "Employee added successfully!", Toast.LENGTH_SHORT).show();
-                        finish(); // Close this activity immediately
+                        finish();
                     }
                 },
 
@@ -111,6 +106,5 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     }
                 });
 
-        // Add the request to the RequestQueue
         VolleySingleton.getInstance(AddEmployeeActivity.this).getRequestQueue().add(jsonObjectRequest);
     }};
