@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Dashboard extends AppCompatActivity {
 
     Button addemployee_button;
-    Button editemployee_button;
-    Button deleteemployee_button;
     Button viewEmployeeList_button;
     private static final String URL = "https://web.socem.plymouth.ac.uk/COMP2000/api/employees";
 
